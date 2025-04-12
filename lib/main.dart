@@ -22,6 +22,8 @@ class _PointsCounterState extends State<PointsCounter> {
   int teamBpoints = 0;
   @override
   Widget build(BuildContext context) {
+    final screenwidth = MediaQuery.of(context).size.width;
+    final screenheight = MediaQuery.of(context).size.height;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -35,13 +37,13 @@ class _PointsCounterState extends State<PointsCounter> {
         body: Column(
           children: [
             SizedBox(
-              height: 20,
+              height: .02 * screenheight,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  height: 400,
+                  height: .625 * screenheight,
                   child: Column(
                     children: [
                       Text(
@@ -50,7 +52,7 @@ class _PointsCounterState extends State<PointsCounter> {
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        height: 110,
+                        height: .17 * screenheight,
                         child: Text(
                           '$teamApoints',
                           style: TextStyle(
@@ -63,16 +65,16 @@ class _PointsCounterState extends State<PointsCounter> {
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: .05 * screenheight,
                       ),
-                      customebutton('Add 1 point', 'A'),
-                      customebutton('Add 2 points', 'A'),
-                      customebutton('Add 3 points', 'A'),
+                      customebutton('Add 1 point', 'A', .3 * screenwidth),
+                      customebutton('Add 2 points', 'A', .3 * screenwidth),
+                      customebutton('Add 3 points', 'A', .3 * screenwidth),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 400,
+                  height: .625 * screenheight,
                   child: VerticalDivider(
                     indent: 10,
                     endIndent: 80,
@@ -81,7 +83,7 @@ class _PointsCounterState extends State<PointsCounter> {
                   ),
                 ),
                 SizedBox(
-                  height: 400,
+                  height: .625 * screenheight,
                   child: Column(
                     children: [
                       Text(
@@ -90,7 +92,7 @@ class _PointsCounterState extends State<PointsCounter> {
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        height: 110,
+                        height: .17 * screenheight,
                         child: Text(
                           '$teamBpoints',
                           style: TextStyle(
@@ -103,11 +105,11 @@ class _PointsCounterState extends State<PointsCounter> {
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: .05 * screenheight,
                       ),
-                      customebutton('Add 1 point', 'B'),
-                      customebutton('Add 2 points', 'B'),
-                      customebutton('Add 3 points', 'B'),
+                      customebutton('Add 1 point', 'B', .3 * screenwidth),
+                      customebutton('Add 2 points', 'B', .3 * screenwidth),
+                      customebutton('Add 3 points', 'B', .3 * screenwidth),
                     ],
                   ),
                 ),
@@ -120,7 +122,7 @@ class _PointsCounterState extends State<PointsCounter> {
                 });
               },
               color: Colors.orange,
-              minWidth: 120,
+              minWidth: .3 * screenwidth,
               child: Text("Reset"),
             )
           ],
@@ -129,7 +131,7 @@ class _PointsCounterState extends State<PointsCounter> {
     );
   }
 
-  Widget customebutton(String content, String team) {
+  Widget customebutton(String content, String team, double width) {
     bool onepoint = content.contains('1');
     bool twopoints = content.contains('2');
     return MaterialButton(
@@ -165,7 +167,7 @@ class _PointsCounterState extends State<PointsCounter> {
         }
       },
       color: Colors.orange,
-      minWidth: 120,
+      minWidth: width,
       child: Text(content),
     );
   }
