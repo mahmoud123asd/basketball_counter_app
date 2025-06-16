@@ -7,23 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomePage extends StatelessWidget {
   final double screenheight;
   final double screenwidth;
-  int teamApoints = 0;
-  int teamBpoints = 0;
-
-  HomePage({super.key, required this.screenheight, required this.screenwidth});
+  const HomePage(
+      {super.key, required this.screenheight, required this.screenwidth});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CounterCubit, Counterstates>(
-      listener: (context, state) {
-        if (state is CounterAIncrementState) {
-          teamApoints = BlocProvider.of<CounterCubit>(context).teamApoints;
-        } else if (state is CounterBIncrementState) {
-          teamBpoints = BlocProvider.of<CounterCubit>(context).teamBpoints;
-        } else {
-          teamApoints = teamBpoints = 0;
-        }
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -53,11 +43,15 @@ class HomePage extends StatelessWidget {
                         SizedBox(
                           height: .17 * screenheight,
                           child: Text(
-                            '$teamApoints',
+                            '${BlocProvider.of<CounterCubit>(context).teamApoints}',
                             style: TextStyle(
-                                fontSize: teamApoints >= 1000
+                                fontSize: BlocProvider.of<CounterCubit>(context)
+                                            .teamApoints >=
+                                        1000
                                     ? 50
-                                    : 0 >= 100
+                                    : BlocProvider.of<CounterCubit>(context)
+                                                .teamApoints >=
+                                            100
                                         ? 70
                                         : 100,
                                 fontWeight: FontWeight.bold),
@@ -105,11 +99,15 @@ class HomePage extends StatelessWidget {
                         SizedBox(
                           height: .17 * screenheight,
                           child: Text(
-                            '$teamBpoints',
+                            '${BlocProvider.of<CounterCubit>(context).teamBpoints}',
                             style: TextStyle(
-                                fontSize: teamBpoints >= 1000
+                                fontSize: BlocProvider.of<CounterCubit>(context)
+                                            .teamBpoints >=
+                                        1000
                                     ? 50
-                                    : 0 >= 100
+                                    : BlocProvider.of<CounterCubit>(context)
+                                                .teamBpoints >=
+                                            100
                                         ? 70
                                         : 100,
                                 fontWeight: FontWeight.bold),
